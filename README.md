@@ -1,4 +1,4 @@
-# jaffle_shop_duckdb_superset
+# call_reporter_duckdb_superset
 ---
 
 This is a simple project using [dbt-duckdb](https://github.com/duckdb/dbt-duckdb) and [Apache Superset](https://superset.apache.org/) to build an all-in-one Modern Data Stack which can be used on your laptop without Cloud Stacks.
@@ -28,18 +28,4 @@ Just 2 steps!
     docker-compose up --build
     ```
    
-# Screenshots
-
-### Apache Superset
-
-![Apache Superset](resources/jaffle-shop-dashboards.jpg "Jaffle Shop Dashboard with Apache Superset")
-
-### dbt
-
-![Overview](resources/dbt-overview.png "dbt Overview")
-![Lineage Graph](resources/dbt-lineage-graph.png "dbt Lineage Graph")
-
-# References
-
-- [dbt-labs/jaffle_shop_duckdb](https://github.com/dbt-labs/jaffle_shop_duckdb/)
  

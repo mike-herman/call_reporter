@@ -1,0 +1,8 @@
+call_reporter:
+
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: './call_reporter_duckdb_home/call_reporter.duckdb'
+      threads: 24

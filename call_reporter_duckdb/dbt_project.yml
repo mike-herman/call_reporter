@@ -1,9 +1,9 @@
-name: 'jaffle_shop'
+name: 'call_reporter'
 
 config-version: 2
 version: '0.1'
 
-profile: 'jaffle_shop'
+profile: 'call_reporter'
 
 model-paths: ["models"]
 seed-paths: ["seeds"]
@@ -24,7 +24,7 @@ seeds:
     node_color: '#cd7f32'
 
 models:
-  jaffle_shop:
+  call_reporter:
     materialized: table
     staging:
       materialized: view

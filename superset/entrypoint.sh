@@ -14,7 +14,7 @@ if [ ! -f "$DB_FILE" ]; then
               --email admin@example.com
   superset db upgrade
   superset init
-#  superset set_database_uri -d DW -u duckdb:///superset_home/jaffle_shop.duckdb
+#  superset set_database_uri -d DW -u duckdb:///superset_home/call_reporter.duckdb
   superset import-dashboards --path superset_home/assets/dashboard_export.zip
 else
   echo "Initialization is skipped because the database file exists."

@@ -1,15 +1,15 @@
 version: "3.7"
 
 services:
-  jaffle_shop_duckdb:
+  call_reporter_duckdb:
     build:
-      context: ./jaffle_shop_duckdb
+      context: ./call_reporter_duckdb
       dockerfile: Dockerfile
     restart: always
     ports:
       - "8080:8080"
     volumes:
-      - ./shared:/app/jaffle_shop_duckdb_home/
+      - ./shared:/app/call_reporter_duckdb_home/
   superset:
     build:
       context: ./superset
@@ -24,4 +24,4 @@ services:
       - ./shared:/app/superset_home/
       - ./superset/assets:/app/superset_home/assets
     depends_on:
-      - jaffle_shop_duckdb
+      - call_reporter_duckdb
