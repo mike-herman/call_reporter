@@ -1,7 +1,6 @@
-version: "3.7"
-
 services:
   call_reporter_duckdb:
+    image: michaelherman/call_reporter_duckdb
     build:
       context: ./call_reporter_duckdb
       dockerfile: Dockerfile
@@ -11,6 +10,7 @@ services:
     volumes:
       - ./shared:/app/call_reporter_duckdb_home/
   superset:
+    image: michaelherman/call_reporter_superset
     build:
       context: ./superset
       dockerfile: Dockerfile
