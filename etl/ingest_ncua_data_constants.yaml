@@ -1,0 +1,101 @@
+default_file_names:
+  - name: AcctDesc
+    added: 1990-06-01
+    retired: null
+    col_names:
+      - Account
+      - AcctName
+      - AcctDesc
+      - TableName
+      - Annualize
+      - CBSAccount
+      - FPRAccount
+      - STATAcctMain
+      - STATAcctState
+      - STATAcctGraph
+      - STATAcctTable8
+      - STATUS
+  - name: Acct-DescCUSO
+    added: 2009-09-01
+    retired: 2016-09-01
+  - name: Acct-DescGrants
+    added: 2013-09-01
+    retired: null
+  - name: Acct-DescTradeNames
+    added: 2013-09-01
+    retired: null
+  - name: ATM Locations
+    added: 2012-12-01
+    retired: null
+  - name: Credit Union Branch Information
+    added: 2010-09-01
+    retired: null
+  - name: FOICU
+    added: 1988-06-01
+    retired: null
+  - name: FOICUDES
+    added: 1988-06-01
+    retired: null
+  - name: FS220
+    added: 1990-06-01
+    retired: null
+  - name: FS220A
+    added: 1990-06-01
+    retired: null
+  - name: FS220B
+    added: 1990-06-01
+    retired: null
+  - name: FS220C
+    added: 1990-06-01
+    retired: null
+  - name: FS220CUSO
+    added: 2009-09-01
+    retired: 2016-09-01
+  - name: FS220D
+    added: 1990-06-01
+    retired: null
+  - name: FS220E
+    added: 2013-06-01
+    retired: 2016-09-01
+  - name: FS220G
+    added: 2009-03-01
+    retired: null
+  - name: FS220H
+    added: 2010-03-01
+    retired: null
+  - name: FS220I
+    added: 2012-12-01
+    retired: null
+  - name: FS220J
+    added: 2014-03-01
+    retired: null
+  - name: FS220K
+    added: 2014-03-01
+    retired: null
+  - name: FS220L
+    added: 2017-09-01
+    retired: null
+  - name: FS220M
+    added: 2017-09-01
+    retired: null
+  - name: FS220N
+    added: 2019-03-01
+    retired: null
+  - name: FS220P
+    added: 2022-03-01
+    retired: null
+  - name: FS220Q
+    added: 2022-03-01
+    retired: null
+  - name: FS220R
+    added: 2022-03-01
+    retired: null
+  - name: FS220S
+    added: 2024-03-01
+    retired: null
+  - name: Grants
+    added: 2013-09-01
+    retired: null
+  - name: TradeNames
+    added: 2013-09-01
+    retired: null

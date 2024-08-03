@@ -170,3 +170,5 @@ logs/
 
 # superset
 **/*.db
+
+**/*.bash_history
