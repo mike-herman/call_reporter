@@ -1,3 +1,5 @@
+name: call_reporter
+
 services:
   call_reporter_duckdb:
     image: michaelherman/call_reporter_duckdb
