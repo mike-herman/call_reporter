@@ -21,9 +21,21 @@ services:
       SUPERSET_ADMIN: ${SUPERSET_ADMIN}
       SUPERSET_PASSWORD: ${SUPERSET_PASSWORD}
     ports:
-      - "8088:8088"
+      - "8088:443"
+      - "8088:80"
     volumes:
       - ./shared:/app/superset_home/
       - ./superset/assets:/app/superset_home/assets
     depends_on:
       - call_reporter_duckdb
+  call_reporter_etl:
+    image: michaelherman/call_reporter_etl
+    build:
+      context: ./call_reporter_etl
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      DB_FILE: "./shared/call_reporter.duckdb"
+    volumes:
+      - ./shared:/etl/shared/
+

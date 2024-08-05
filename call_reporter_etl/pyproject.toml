@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "call-reporter-etl"
+version = "0.1.0"
+description = ""
+authors = ["michael_herman <m.herman.1000@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+boto3 = "^1.34"
+botocore = "^1.34"
+requests = "^2.32"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

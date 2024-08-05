@@ -1,10 +1,9 @@
 # Script to ingest NCUA data files and load to S3 bucket.
 from dataclasses import dataclass, field
 
-import boto3
-from botocore.exceptions import ClientError
+
 import tempfile
-import requests
+
 import zipfile
 import os
 from itertools import product
@@ -13,6 +12,11 @@ from math import ceil
 
 import argparse
 import logging
+
+import requests
+import boto3
+from botocore.exceptions import ClientError
+
 logger = logging.getLogger(__name__)
 os.makedirs('.logs', exist_ok = True)
 # logging.basicConfig(filename='.logs/injest_ncua_data.log', encoding='utf-8', level=logging.INFO)
