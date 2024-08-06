@@ -10,8 +10,11 @@ import re
 import boto3
 import duckdb
 
+DB_FILE = os.getenv("DB_FILE")
+
 logger = logging.getLogger(__name__)
-logging.basicConfig(filename='../.logs/data_loader.log', encoding='utf-8', level=logging.INFO)
+os.makedirs("shared/.logs", exist_ok=True)
+logging.basicConfig(filename='shared/.logs/data_loader.log', encoding='utf-8', level=logging.INFO)
 
 # TODO: Move this info to a yaml config. Make it generalizable to more tables.
 known_fields = [
@@ -42,7 +45,7 @@ def get_col_list(year: int, month: int, file_name: str) -> list[str]:
             lines_read += 1
     return col_list
 
-def load_table_to_db(file_name: str, year: int, month: int, duck_db_file: str = 'call_reporter_db.duckdb'):
+def load_table_to_db(file_name: str, year: int, month: int, duck_db_file: str = DB_FILE):
     """ load_table_to_db(file_name: str, year: int, month: int, duck_db_file: str = 'call_reporter_db.duckdb')
     Load a file from S3 into a DuckDB database.
     """
@@ -108,6 +111,17 @@ def make_year_month_range(start_date: date, end_date: date) -> list[tuple[int,in
         date(y,m,1) >= date(start_year,start_month,1) and \
         date(y,m,1) <= date(end_year,end_month,1)]
 
+logger.info("Reading DLL sql file.")
+with open("ncua_ddl.sql") as ddl:
+    ddl_qry = ddl.read()
+
+logger.info(f"Connecting to database at {DB_FILE}")
+con = duckdb.connect(DB_FILE)
+logger.info(f"Running DLL.")
+con.sql(ddl_qry)
+con.close()
+
 for y, m in make_year_month_range(date(2020,1,1),date(2024,3,1)):
     logger.info(f"Starting upload for ({y},{m})")
     load_table_to_db('foicu',y,m)
+

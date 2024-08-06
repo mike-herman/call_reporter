@@ -1,8 +1,22 @@
 name: call_reporter
 
 services:
+  call_reporter_etl:
+    image: michaelherman/call_reporter_etl
+    build:
+      context: ./call_reporter_etl
+      dockerfile: Dockerfile
+    restart: no
+    environment:
+      DB_FILE: "shared/call_reporter.duckdb"
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - ./shared:/call_reporter_etl/shared/:rw
   call_reporter_duckdb:
     image: michaelherman/call_reporter_duckdb
+    depends_on:
+      - call_reporter_etl
     build:
       context: ./call_reporter_duckdb
       dockerfile: Dockerfile
@@ -10,9 +24,11 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./shared:/app/call_reporter_duckdb_home/
+      - ./shared:/app/call_reporter_duckdb_home/:rw
   superset:
     image: michaelherman/call_reporter_superset
+    depends_on:
+      - call_reporter_duckdb
     build:
       context: ./superset
       dockerfile: Dockerfile
@@ -21,21 +37,8 @@ services:
       SUPERSET_ADMIN: ${SUPERSET_ADMIN}
       SUPERSET_PASSWORD: ${SUPERSET_PASSWORD}
     ports:
-      - "8088:443"
-      - "8088:80"
+      - "443:8088"
+      - "80:8088"
     volumes:
       - ./shared:/app/superset_home/
       - ./superset/assets:/app/superset_home/assets
-    depends_on:
-      - call_reporter_duckdb
-  call_reporter_etl:
-    image: michaelherman/call_reporter_etl
-    build:
-      context: ./call_reporter_etl
-      dockerfile: Dockerfile
-    restart: always
-    environment:
-      DB_FILE: "./shared/call_reporter.duckdb"
-    volumes:
-      - ./shared:/etl/shared/
-
