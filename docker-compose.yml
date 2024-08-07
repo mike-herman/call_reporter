@@ -3,9 +3,13 @@ name: call_reporter
 services:
   call_reporter_etl:
     image: michaelherman/call_reporter_etl
+    container_name: call_reporter_etl
     build:
       context: ./call_reporter_etl
       dockerfile: Dockerfile
+      tags:
+        - michaelherman/call_reporter_etl:latest
+        - 996538875135.dkr.ecr.us-east-1.amazonaws.com/call-reporter:latest
     restart: no
     environment:
       DB_FILE: "shared/call_reporter.duckdb"

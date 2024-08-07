@@ -172,3 +172,5 @@ logs/
 **/*.db
 
 **/*.bash_history
+
+*.pem
