@@ -20,7 +20,8 @@ services:
   call_reporter_duckdb:
     image: michaelherman/call_reporter_duckdb
     depends_on:
-      - call_reporter_etl
+      call_reporter_etl:
+        condition: service_completed_successfully
     build:
       context: ./call_reporter_duckdb
       dockerfile: Dockerfile
@@ -32,7 +33,8 @@ services:
   superset:
     image: michaelherman/call_reporter_superset
     depends_on:
-      - call_reporter_duckdb
+      call_reporter_duckdb:
+        condition: service_completed_successfully
     build:
       context: ./superset
       dockerfile: Dockerfile
