@@ -9,6 +9,11 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    environment:
+      SUPERSET_ADMIN: ${SUPERSET_ADMIN}
+      SUPERSET_PASSWORD: ${SUPERSET_PASSWORD}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
 
     volumes:
       # Update this to wherever you want VS Code to mount the folder of your project

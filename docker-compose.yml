@@ -9,7 +9,9 @@ services:
       dockerfile: Dockerfile
       tags:
         - michaelherman/call_reporter_etl:latest
-        - 996538875135.dkr.ecr.us-east-1.amazonaws.com/call-reporter:latest
+        # - 996538875135.dkr.ecr.us-east-1.amazonaws.com/call-reporter:latest
+      platforms:
+        - ${BUILD_ARCHITECTURE}
     restart: no
     environment:
       DB_FILE: "shared/call_reporter.duckdb"
@@ -25,19 +27,28 @@ services:
     build:
       context: ./call_reporter_duckdb
       dockerfile: Dockerfile
+      platforms:
+        - ${BUILD_ARCHITECTURE}
     restart: always
     ports:
       - "8080:8080"
     volumes:
       - ./shared:/app/call_reporter_duckdb_home/:rw
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:8080"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
   superset:
     image: michaelherman/call_reporter_superset
     depends_on:
       call_reporter_duckdb:
-        condition: service_completed_successfully
+        condition: service_healthy
     build:
       context: ./superset
       dockerfile: Dockerfile
+      platforms:
+        - ${BUILD_ARCHITECTURE}
     restart: always
     environment:
       SUPERSET_ADMIN: ${SUPERSET_ADMIN}
