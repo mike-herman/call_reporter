@@ -29,6 +29,8 @@ services:
       dockerfile: Dockerfile
       platforms:
         - ${BUILD_ARCHITECTURE}
+    environment:
+      DBT_LOG_PATH: "/app/call_reporter_duckdb_home/.logs/dbt"
     restart: always
     ports:
       - "8080:8080"
@@ -53,8 +55,9 @@ services:
     environment:
       SUPERSET_ADMIN: ${SUPERSET_ADMIN}
       SUPERSET_PASSWORD: ${SUPERSET_PASSWORD}
+      SUPERSET_CONFIG_PATH: "/app/superset_home/assets/superset_config.py"
     ports:
-      - "443:8088"
+      # - "443:8088"
       - "80:8088"
     volumes:
       - ./shared:/app/superset_home/

@@ -4,6 +4,6 @@ call_reporter:
   outputs:
     dev:
       type: duckdb
-      schema: ncua_dbt
+      schema: ncua_analytics
       path: './call_reporter_duckdb_home/call_reporter.duckdb'
       threads: 24
