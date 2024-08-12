@@ -168,9 +168,13 @@ logs/
 **/*.duckdb
 **/*.duckdb.wal
 
+# Ignore the symlink
+call_reporter_duckdb/call_reporter_duckdb_home
+
 # superset
 **/*.db
 
 **/*.bash_history
 
 *.pem
+
